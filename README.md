@@ -6,6 +6,7 @@ This is a Simple awk script that outputs CDP information from a Cisco network de
 
 ### How to Install
 Download the tuxcdp file, set it to executable (chmod +x tuxcdp), and run it (./tuxcdp)
+You can copy the file to **/bin/** and simply execute it by running tuxcdp
 
 ### Requirements:
 This program requires **tcpdump** installed and enabled to run with sudo permissions.
