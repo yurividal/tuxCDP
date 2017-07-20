@@ -28,35 +28,43 @@ BEGIN{
   	for(i=1;i<=length(s);i++){
    		if ($0 ~ s[i] && s[i]){
 
-      			if (i==1){             /* device id*/
+#DEVICE ID
+      			if (i==1){            
 				print "\n";	
 				print red("Device Name: ") green($7);
 				}	
-      
-      			else if (i==2){                          /* Software Version*/
+
+#SOFTWARE VERSION      
+      			else if (i==2){                          
 				print red("Software Version: ") green($0) ;
 					}
-      
+
+#PORT      
       			else if (i==3){                      /*Port*/
 				print red($1 ": ") green($7);
 					}
-	
-			else if (i==4){                               /* vtp management domain*/
+#VTP DOMAIN	
+			else if (i==4){                             
 				print red($1 " " $2 " " $3 ": ") green($9);
 					}
 
-		        else if (i==5){                              /* IP address*/
+#IP ADDRESS
+		        else if (i==5){                             
 				print red("IP Address: ") green($9);
 					}
-     
-			else if (i==6){                                 /* current vlan */
+
+#CURRENT VLAN     
+			else if (i==6){                                 
 				print red("VLAN: ") green($9);
 					}
 
-			else if (i==7){                                 /* duplex */
+#DUPLEX
+			else if (i==7){                                
 				print red("DUPLEX: ") green($7);
 					}
-    			else if (i==8){                                 /* Voice Vlan */
+
+#VOICE VLAN
+    			else if (i==8){                                 
 				print red("Voice VLAN: ") green($13);
 					}
 
