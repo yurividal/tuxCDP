@@ -1,9 +1,4 @@
-#!/usr/bin/awk -f
-
-#this script requires that you have tcpdump and that it is enables to run without root.
-#to run tcpdump without root do:
-#sudo chown -R root tcpdump
-#sudo chmod 4555 tcpdump
+#!/usr/bin/awk -f 
 
 function red(s) {
     printf "\033[1;31m" s "\033[0m "
@@ -17,11 +12,28 @@ function blue(s) {
     printf "\033[1;34m" s "\033[0m "
 }
 
+function detectNic( ) {
+	printf "Enter the Ethernet card to listen or press enter to listen to Default:";getline nic<"/dev/tty"
+	if (nic == ""){
 
+		command = "cat /var/defaultnic"
+
+    		nic = command | getline
+		print "Default network card to listen: " $nic 		
+		return $nic
+
+			}
+		else{	
+		return nic
+		}
+
+}
 BEGIN{
+    
+    nic = detectNic();
+    cmd = "tcpdump -nv -s 1500 ether dst 01:00:0c:cc:cc:cc -c 1 -i"
 
-    cmd = "tcpdump -nvi enp0s25 -s 1500 ether dst 01:00:0c:cc:cc:cc -c 1"
-    while ((cmd | getline) > 0) {
+    while ((cmd nic | getline) > 0) {
 	str="Device-ID:Cisco IOS Software:Port-ID:VTP:Address:VLAN:Duplex:VoIP:"
   	split(str,s,":")
 
@@ -40,7 +52,7 @@ BEGIN{
 					}
 
 #PORT      
-      			else if (i==3){                      /*Port*/
+      			else if (i==3){                      
 				print red($1 ": ") green($7);
 					}
 #VTP DOMAIN	

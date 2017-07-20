@@ -13,6 +13,13 @@ if which tcpdump >/dev/null; then
 	echo "Installing tuxcdp"
 	cp tuxcdp /usr/bin/
 
+	echo "Defining default interface"
+
+	echo "Please enter the default Network Card to be listened by tuxCDP (get it from ifconfig)"
+	read card
+	echo $card > /var/defaultnic
+	echo "Ok. Default interface set to $card"
+
 	echo "Install Complete"
 
 else 
