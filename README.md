@@ -5,12 +5,11 @@ Cisco CDP Client for Linux
 This is a Simple awk script that outputs CDP information from a Cisco network device. 
 
 ### How to Install
-Download the tuxcdp file, set it to executable (chmod +x tuxcdp), and run it (./tuxcdp)
-You can copy the file to **/bin/** and simply execute it by running tuxcdp
+run ./install.sh
 
 ### Requirements:
-This program requires **tcpdump** installed and enabled to run with sudo permissions.
-To do so, simply run:
+This program requires **tcpdump** installed and enabled to run with sudo permissions (The installer does this for you).
+To do it manually, simply run:
            ` sudo chown -R root tcpdump `
             `sudo chmod 4555 tcpdump`
             
