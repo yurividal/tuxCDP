@@ -32,8 +32,9 @@ BEGIN{
     
     nic = detectNic();
     cmd = "tcpdump -nv -s 1500 ether dst 01:00:0c:cc:cc:cc -c 1 -i"
+    fullcmd = cmd nic
 
-    while ((cmd nic | getline) > 0) {
+    while ((fullcmd | getline) > 0) {
 	str="Device-ID:Cisco IOS Software:Port-ID:VTP:Address:VLAN:Duplex:VoIP:"
   	split(str,s,":")
 
